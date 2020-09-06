@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Item Details</title>
+</head>
+<body>
+    <ul style="list-style-type:none; line-height: 2;">
+        {% for id in ids %}
+        {% set linkd = 'preview?url=https%3A%2F%2Flandsat-pds.s3.amazonaws.com%2F' %}
+        {% set slash = '%2F' %}
+        {% set L = id['L'] %}
+        {% set three_d_1 = id['three_d_1'] %}
+        {% set three_d_2 = id['three_d_2'] %}
+        {% set img = id['img'] %}
+        {% set img_file = id['img_file'] %}
+        {% set route1 = 'http://localhost:8000/' %}
+        {% set link = route1 ~ linkd ~ L ~ slash ~ three_d_1 ~ slash ~ three_d_2 ~ slash ~ img ~ slash ~ img_file %}
+        <li><a href='{{ link }}'>{{ id['img'] }}</a></li>
+
+        <li></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
