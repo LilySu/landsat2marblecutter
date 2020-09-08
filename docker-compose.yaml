@@ -6,10 +6,14 @@ services:
         restart: always
         environment:
             - APP_NAME=Flask
-        entrypoint: python3
-        command: run.py
+        volumes:
+            - .:/flask
+        # entrypoint: python3
+        command: uwsgi /flask/flask/uwsgi.ini
         ports:
             - "5000:5000"
+        # expose:
+        #     - 8080
 
     marblecutter-virtual:
         build: ./marblecutter-virtual
@@ -19,8 +23,8 @@ services:
         volumes:
             - .:/opt/marblecutter/marblecutter-virtual/
         restart: unless-stopped
-        entrypoint: python
-        command: server.py
+        # entrypoint: python
+        command: uwsgi /opt/marblecutter/marblecutter-virtual/uwsgi.ini
         ports:
             - "8000:8000"
 
